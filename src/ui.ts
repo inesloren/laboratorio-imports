@@ -151,6 +151,7 @@ export const mePlantoClick = ():void => {
 
 export const reiniciarPartidaClick = ():void => {
     partida.puntuacionUsuario = 0;
+    partida.estadoPartida = "pordebajodesieteymedio",
     muestraPuntuacion();
     habilitarBotonesNuevaPartida();
     reiniciarImagenCarta();

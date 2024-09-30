@@ -1,4 +1,4 @@
-import { Carta, partida } from './model';
+import { Carta, Estadopartida, partida } from './model';
 
 export const generarNumeroAleatorio = () => {
 	return Math.floor (Math.random() * 10) + 1;
@@ -70,3 +70,14 @@ export const mePlantoMensaje = () => {
     
         return mensaje;
     };
+
+export const obtenerEstadoPartida = ():Estadopartida => {
+    if (partida.puntuacionUsuario === 7.5) {
+        partida.estadoPartida = "máximo";
+    }
+    if (partida.puntuacionUsuario > 7.5) {
+        partida.estadoPartida = "tehaspasado";
+    } 
+
+    return partida.estadoPartida;
+}

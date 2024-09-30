@@ -8,6 +8,7 @@ import {
     sumarPuntos,
     actualizarPuntos,
     mePlantoMensaje,
+    obtenerEstadoPartida,
 } from './motor';
 
 export const pintarUrlCarta = (urlCarta: string) => {
@@ -25,8 +26,8 @@ export const muestraPuntuacion = () => {
     }
 };
 
-export const gestionarGameOver = (puntuacionUsuario: number) => {
-    if (puntuacionUsuario > 7.5) {
+export const gestionarGameOver = () => {
+    if (obtenerEstadoPartida() === "tehaspasado") {
         const elementoResultado = document.getElementById("resultado");
         if(elementoResultado && elementoResultado instanceof HTMLParagraphElement){
             elementoResultado.innerHTML = `¡Game Over!`;
@@ -38,7 +39,7 @@ export const gestionarGameOver = (puntuacionUsuario: number) => {
         }
     }
 
-    if(puntuacionUsuario === 7.5) {
+    if(obtenerEstadoPartida() === "máximo") {
         const elementoResultado = document.getElementById("resultado");
         if(elementoResultado && elementoResultado instanceof HTMLParagraphElement){
             elementoResultado.innerHTML = `¡Lo has clavado, enhorabuena!`;
@@ -137,7 +138,7 @@ export const dameCartaClick = (): void => {
     const puntosSumados = sumarPuntos(puntos);
     actualizarPuntos(puntosSumados);
     muestraPuntuacion();
-    gestionarGameOver(partida.puntuacionUsuario);
+    gestionarGameOver();
     deshabilitarBotonesCuandoHePerdido(partida.puntuacionUsuario);
     deshabilitarBotonesCuandoHeGanado(partida.puntuacionUsuario);
 }
